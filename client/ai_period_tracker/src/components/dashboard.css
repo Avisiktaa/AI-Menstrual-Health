@@ -1,0 +1,23 @@
+/* Dashboard.css */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.risk {
+  font-weight: bold;
+}
+
+.risk.low {
+  color: green;
+}
+
+.risk.moderate {
+  color: orange;
+}
+
+.risk.high {
+  color: red;
+}

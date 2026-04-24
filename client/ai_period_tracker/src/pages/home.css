@@ -1,0 +1,57 @@
+/* Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url('../assets/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Playfair Display', serif;
+}
+
+.home-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.home-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.home-header h1 {
+  text-align: center;
+  flex: 1;
+}
+
+.home-header .logout-btn {
+  position: absolute;
+  right: 0;
+}
+
+.logout-btn {
+  background: #2b1d1f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.result-card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
