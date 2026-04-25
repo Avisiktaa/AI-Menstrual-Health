@@ -48,7 +48,14 @@ function runML(longCycle, irregularScore, variation, lengthOfCycle) {
 // ==============================
 router.post("/", async (req, res) => {
   try {
-    const { cycles, symptoms = [] } = req.body;
+    const { cycles, symptoms = [], language = "en" } = req.body;
+
+    const languageMap = {
+      en: "English",
+      hi: "Hindi",
+      bn: "Bengali",
+    };
+    const respondInLanguage = languageMap[language] || "English";
 
     // 1. AVG
     const avg =
@@ -94,6 +101,7 @@ Rules:
 - Only general advice
 - Keep it short (3-4 sentences)
 - Be supportive and helpful
+- Respond ONLY in ${respondInLanguage}
 
 User Data:
 Cycles: ${cycles.join(", ")} days
@@ -101,7 +109,7 @@ Symptoms: ${symptoms.join(", ") || "none"}
 PCOD Risk: ${mlResult.risk}
 Confidence: ${mlResult.confidence}%
 
-Provide brief, actionable advice.
+Provide brief, actionable advice in ${respondInLanguage}.
 `;
       
       const result = await model.generateContent(prompt);
