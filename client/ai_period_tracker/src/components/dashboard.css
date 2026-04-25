@@ -3,21 +3,34 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
+  font-family:cursive;
+}
+
+.dashboard h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.dashboard p {
+  font-size: 1.5rem;
+  line-height: 1.7;
 }
 
 .risk {
-  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .risk.low {
-  color: green;
+  color: rgb(2, 68, 2);
 }
 
-.risk.moderate {
-  color: orange;
+.risk.medium {
+  color: rgb(97, 64, 6);
 }
 
 .risk.high {
-  color: red;
+  color: rgb(54, 2, 2);
 }

@@ -1,12 +1,13 @@
 /* Home.css */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400&display=swap');
 
 body {
   margin: 0;
   min-height: 100vh;
   background: url('../assets/background.jpg') no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
 }
 
 .home-container {
@@ -21,11 +22,15 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
+  font-family: cursive;
 }
 
 .home-header h1 {
   text-align: center;
   flex: 1;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .home-header .logout-btn {
@@ -33,13 +38,24 @@ body {
   right: 0;
 }
 
+.header-right {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .logout-btn {
   background: #2b1d1f;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
 }
 
 .card {
@@ -47,11 +63,13 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 20px;
+  padding: 28px;
   border-radius: 12px;
   margin-top: 20px;
+  font-family: cursive;
 }
 
 .result-card {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
 }
