@@ -33,6 +33,7 @@ AI Menstrual Health Tracker helps users log their menstrual cycle data and sympt
 ✅ **AI Health Advice** - Personalized recommendations via Google Gemini
 ✅ **Dark Mode Support** - Automatic theme detection
 ✅ **Responsive Design** - Works on all devices
+Multilingual - supports three languages English, Bengali and Hindi
 
 ---
 
