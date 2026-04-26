@@ -86,7 +86,7 @@ router.post("/", async (req, res) => {
     // 7. GET GEMINI ADVICE
     let advice = null;
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
       
       const languageMap = { 'hi': 'Hindi', 'bn': 'Bengali', 'en': 'English' };
       const targetLang = languageMap[lang] || 'English';

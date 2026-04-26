@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
   try {
     const { cycles, symptoms, risk, message, lang = 'en' } = req.body;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     const languageMap = { 'hi': 'Hindi', 'bn': 'Bengali', 'en': 'English' };
     const targetLang = languageMap[lang] || 'English';
 
