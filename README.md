@@ -428,3 +428,16 @@ MIT License - feel free to use this project for learning and development.
 - Google Gemini AI for health advice generation
 - Firebase for authentication and database
 - scikit-learn for ML model training
+
+---
+
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+**Quick Deploy:**
+- Backend: Render/Railway (Node.js + Python)
+- Frontend: Vercel/Netlify (React + Vite)
+- Database: Firebase (Already configured)
+
+**Live Demo:** (Add your deployed URL here after deployment)

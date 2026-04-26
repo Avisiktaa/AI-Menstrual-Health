@@ -53,17 +53,18 @@ router.post("/", async (req, res) => {
     const { cycles, symptoms = [], lang = 'en' } = req.body;
 
     // 1. AVG
-    const avg =
-      cycles.reduce((sum, val) => sum + val, 0) / cycles.length;
+    const avg = cycles.reduce((sum, val) => sum + val, 0) / cycles.length;
 
-    // 2. VARIATION
-    const lastCycle = cycles[cycles.length - 1];
-    const variation = Math.abs(lastCycle - avg);
+    // 2. FIND MAX CYCLE (most important for risk assessment)
+    const maxCycle = Math.max(...cycles);
+    
+    // 3. VARIATION (use max cycle for variation calculation)
+    const variation = Math.abs(maxCycle - avg);
 
-    // 3. LONG CYCLE
-    const longCycle = lastCycle > 35 ? 1 : 0;
+    // 4. LONG CYCLE (check if max cycle > 35)
+    const longCycle = maxCycle > 35 ? 1 : 0;
 
-    // 4. MENSES SCORE
+    // 5. MENSES SCORE
     let mensesScore = 0;
 
     if (symptoms.includes("pain")) mensesScore += 2;
@@ -71,15 +72,15 @@ router.post("/", async (req, res) => {
     if (symptoms.includes("missed_period")) mensesScore += 3;
     if (symptoms.includes("irregular")) mensesScore += 2;
 
-    // 5. IRREGULAR SCORE
+    // 6. IRREGULAR SCORE
     const irregularScore = variation + mensesScore;
 
-    // 6. CALL ML
+    // 7. CALL ML
     const mlResult = await runML(
       longCycle,
       irregularScore,
       variation,
-      lastCycle
+      maxCycle
     );
 
     // 7. GET GEMINI ADVICE

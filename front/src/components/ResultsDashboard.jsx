@@ -210,9 +210,11 @@ export default function ResultsDashboard({ formData, aiData, onRestart, t }) {
         {/* Risk Assessment Card */}
         <div className="glass-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '14px', fontWeight: '600', marginBottom: '12px' }}>
-            <ShieldCheck size={18} color={risk === 'High' ? 'var(--danger)' : 'var(--success)'} /> {t.pcodRisk}
+            <ShieldCheck size={18} color={risk === 'High' ? 'var(--danger)' : risk === 'Medium' ? 'var(--warning)' : 'var(--success)'} /> {t.pcodRisk}
           </div>
-          <div style={{ fontSize: '28px', fontWeight: '800', color: risk === 'High' ? 'var(--danger)' : 'var(--success)' }}>{risk === 'High' ? t.riskHigh : t.riskLow}</div>
+          <div style={{ fontSize: '28px', fontWeight: '800', color: risk === 'High' ? 'var(--danger)' : risk === 'Medium' ? 'var(--warning)' : 'var(--success)' }}>
+            {risk === 'High' ? t.riskHigh : risk === 'Medium' ? t.riskMedium : t.riskLow}
+          </div>
           <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>AI Confidence: {translateNumber(confidence)}%</div>
         </div>
       </div>
@@ -235,7 +237,9 @@ export default function ResultsDashboard({ formData, aiData, onRestart, t }) {
               <div style={{ padding: '10px', background: 'rgba(0, 206, 201, 0.1)', borderRadius: '12px' }}><Droplets size={20} color="#00CEC9" /></div>
               <div>
                 <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-muted)' }}>{t.recHydration}</div>
-                <div style={{ fontSize: '15px', color: 'var(--text-main)' }}>{currentRecs.water}</div>
+                <div style={{ fontSize: '15px', color: 'var(--text-main)' }}>
+                  {currentRecs.water.replace(/\d+\.?\d*/g, (match) => translateNumber(match))}
+                </div>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -267,7 +271,7 @@ export default function ResultsDashboard({ formData, aiData, onRestart, t }) {
         <div className="glass-card" style={{ background: 'linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(253, 167, 223, 0.1))' }}>
           <h3 className="section-title" style={{ color: 'var(--primary)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Sparkles size={20} /> AI Health Advice
+              <Sparkles size={20} /> {t.aiHealthAdvice}
             </div>
             <button onClick={handleSpeak} className="btn-secondary" style={{ borderRadius: '50%', width: '36px', height: '36px', padding: 0 }}>
               <Volume2 size={18} />

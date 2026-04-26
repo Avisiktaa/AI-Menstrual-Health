@@ -6,6 +6,12 @@ import { Calendar, ChevronRight, History as HistoryIcon, AlertCircle, Clock, Tra
 export default function History({ onViewResult, t }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [, forceUpdate] = useState();
+
+  // Force re-render when language changes
+  useEffect(() => {
+    forceUpdate({});
+  }, [t.langCode]);
 
   useEffect(() => {
     const fetchHistory = async () => {

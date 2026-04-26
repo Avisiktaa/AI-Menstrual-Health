@@ -98,7 +98,15 @@ export const translations = {
     recYoga: "Recommended Yoga",
     recPhaseNotSet: "Phase: Not Set",
     recPhasePrompt: "Enter last period date in form to see phase",
-    lifestyleTitle: "Lifestyle & Sleep"
+    lifestyleTitle: "Lifestyle & Sleep",
+    aiHealthAdvice: "AI Health Advice",
+    
+    // Sidebar
+    darkMode: "Dark Mode",
+    lightMode: "Light Mode",
+    collapse: "Collapse",
+    expand: "Expand",
+    logout: "Logout"
   },
   hi: {
     langCode: 'hi',
@@ -199,7 +207,15 @@ export const translations = {
     recYoga: "अनुशंसित योग",
     recPhaseNotSet: "चरण: सेट नहीं",
     recPhasePrompt: "चरण देखने के लिए फॉर्म में अंतिम अवधि की तारीख दर्ज करें",
-    lifestyleTitle: "जीवनशैली और नींद"
+    lifestyleTitle: "जीवनशैली और नींद",
+    aiHealthAdvice: "एआई स्वास्थ्य सलाह",
+    
+    // Sidebar
+    darkMode: "डार्क मोड",
+    lightMode: "लाइट मोड",
+    collapse: "संक्षिप्त करें",
+    expand: "विस्तार करें",
+    logout: "लॉगआउट"
   },
   bn: {
     langCode: 'bn',
@@ -300,6 +316,14 @@ export const translations = {
     recYoga: "সুপারিশকৃত যোগব্যায়াম",
     recPhaseNotSet: "পর্যায়: সেট করা নেই",
     recPhasePrompt: "পর্যায় দেখতে ফর্মে শেষ পিরিয়ডের তারিখ লিখুন",
-    lifestyleTitle: "জীবনধারা ও ঘুম"
+    lifestyleTitle: "জীবনধারা ও ঘুম",
+    aiHealthAdvice: "এআই স্বাস্থ্য পরামর্শ",
+    
+    // Sidebar
+    darkMode: "ডার্ক মোড",
+    lightMode: "লাইট মোড",
+    collapse: "সংকুচিত করুন",
+    expand: "প্রসারিত করুন",
+    logout: "লগআউট"
   },
 };

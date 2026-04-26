@@ -88,17 +88,17 @@ export default function Sidebar({
 
         <button onClick={toggleTheme} className="sidebar-item">
           {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-          {!collapsed && <span className="sidebar-label">{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>}
+          {!collapsed && <span className="sidebar-label">{theme === 'light' ? t.darkMode : t.lightMode}</span>}
         </button>
 
         <button onClick={() => setCollapsed(!collapsed)} className="sidebar-item">
           {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-          {!collapsed && <span className="sidebar-label">Collapse</span>}
+          {!collapsed && <span className="sidebar-label">{t.collapse}</span>}
         </button>
 
         <button onClick={onLogout} className="sidebar-item logout">
           <LogOut size={20} />
-          {!collapsed && <span className="sidebar-label">Logout</span>}
+          {!collapsed && <span className="sidebar-label">{t.logout}</span>}
         </button>
       </div>
     </div>

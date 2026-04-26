@@ -249,7 +249,7 @@ function App() {
           </div>
         )}
         {step === 3 && <ResultsDashboard formData={formData} aiData={aiData} onRestart={handleRestart} t={t} />}
-        {step === 4 && <History onViewResult={handleViewDetails} t={t} />}
+        {step === 4 && <History key={lang} onViewResult={handleViewDetails} t={t} />}
         {step === 5 && <CalendarView t={t} />}
 
         <Chatbot t={t} formData={formData} aiData={aiData} lang={lang} />
