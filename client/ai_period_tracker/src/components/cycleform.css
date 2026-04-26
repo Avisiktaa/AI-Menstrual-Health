@@ -19,6 +19,12 @@ form input {
   margin-top: 5px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  background: white;
+  color: #333;
+}
+
+form input::placeholder {
+  color: #999;
 }
 
 form button {
@@ -34,4 +40,17 @@ form button {
 
 form button:hover {
   background: #574fd6;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  form input {
+    background: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+  
+  form input::placeholder {
+    color: #aaa;
+  }
 }

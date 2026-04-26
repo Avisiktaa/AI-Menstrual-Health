@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { spawn } = require("child_process");
+const path = require("path");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -10,8 +11,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // ==============================
 function runML(longCycle, irregularScore, variation, lengthOfCycle) {
   return new Promise((resolve, reject) => {
+    const scriptPath = path.join(__dirname, "../../ml-service/predict.py");
     const py = spawn("python", [
-      "../ml-service/predict.py",
+      scriptPath,
       longCycle,
       irregularScore,
       variation,
@@ -48,7 +50,7 @@ function runML(longCycle, irregularScore, variation, lengthOfCycle) {
 // ==============================
 router.post("/", async (req, res) => {
   try {
-    const { cycles, symptoms = [] } = req.body;
+    const { cycles, symptoms = [], lang = 'en' } = req.body;
 
     // 1. AVG
     const avg =
@@ -102,6 +104,7 @@ PCOD Risk: ${mlResult.risk}
 Confidence: ${mlResult.confidence}%
 
 Provide brief, actionable advice.
+Respond strictly in ${lang === 'hi' ? 'Hindi' : lang === 'bn' ? 'Bengali' : 'English'}.
 `;
       
       const result = await model.generateContent(prompt);

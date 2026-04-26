@@ -7,6 +7,7 @@ body {
   background: url('../assets/background.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Playfair Display', serif;
+  color: #333;
 }
 
 .home-container {
@@ -26,6 +27,7 @@ body {
 .home-header h1 {
   text-align: center;
   flex: 1;
+  color: #2b1d1f;
 }
 
 .home-header .logout-btn {
@@ -54,4 +56,24 @@ body {
 
 .result-card {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ffffff;
+  }
+  
+  .home-header h1 {
+    color: #ffffff;
+  }
+  
+  .card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .logout-btn {
+    background: #4a3a3c;
+  }
 }
