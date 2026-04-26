@@ -8,9 +8,9 @@ router.post("/", async (req, res) => {
   try {
     const { cycles, symptoms, risk, message, lang = 'en' } = req.body;
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-    });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const languageMap = { 'hi': 'Hindi', 'bn': 'Bengali', 'en': 'English' };
+    const targetLang = languageMap[lang] || 'English';
 
     let prompt = ``;
     
@@ -33,7 +33,7 @@ Rules:
 - Explicitly state this is not a medical diagnosis
 - Keep it concise, friendly, and supportive
 - Do NOT prescribe medicines
-- Respond strictly in ${lang === 'hi' ? 'Hindi' : lang === 'bn' ? 'Bengali' : 'English'}
+- IMPORTANT: You MUST respond strictly in ${targetLang}. Use the appropriate script.
 `;
     } else {
       prompt = `
@@ -51,7 +51,7 @@ Symptoms: ${symptoms}
 Risk: ${risk}
 
 Give advice.
-Respond strictly in ${lang === 'hi' ? 'Hindi' : lang === 'bn' ? 'Bengali' : 'English'}.
+IMPORTANT: You MUST respond strictly in ${targetLang}. Use the appropriate script.
 `;
     }
 

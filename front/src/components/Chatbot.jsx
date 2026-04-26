@@ -28,6 +28,12 @@ export default function Chatbot({ t, formData, aiData, lang }) {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    const handleOpenChat = () => setIsOpen(true);
+    window.addEventListener('open-chatbot', handleOpenChat);
+    return () => window.removeEventListener('open-chatbot', handleOpenChat);
+  }, []);
+
   const toggleChat = () => setIsOpen(!isOpen);
 
   const handleSend = async (e) => {

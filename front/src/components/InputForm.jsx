@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Plus, HeartCrack, Droplets, CalendarOff, AlertTriangle, ChevronDown, ChevronUp, ArrowRight, Calculator, Calendar, ArrowLeft } from 'lucide-react';
+import { Plus, HeartCrack, Droplets, CalendarOff, AlertTriangle, ChevronDown, ChevronUp, ArrowRight, Calculator, Calendar, ArrowLeft, Moon } from 'lucide-react';
 
 export default function InputForm({ onAnalyze, t }) {
   const [cycles, setCycles] = useState([]);
   const [cycleInput, setCycleInput] = useState('');
   const [symptoms, setSymptoms] = useState([]);
   const [showOptional, setShowOptional] = useState(false);
-  const [optionalData, setOptionalData] = useState({ age: '', weight: '', height: '' });
+  const [optionalData, setOptionalData] = useState({ age: '', weight: '', height: '', sleepTime: '', wakeTime: '' });
   const [lastPeriodDate, setLastPeriodDate] = useState('');
   
   // Calculator state
@@ -156,7 +156,22 @@ export default function InputForm({ onAnalyze, t }) {
           </div>
         </section>
 
-        {/* Section 3: Optional Inputs */}
+        {/* Section 3: Lifestyle (Sleep Tracking) */}
+        <section>
+          <h3 className="section-title"><Moon size={20} color="var(--primary)" /> {t.lifestyleTitle || 'Lifestyle & Sleep'}</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: 'var(--text-muted)' }}>{t.sleepTime}</label>
+              <input type="time" className="input-field" value={optionalData.sleepTime} onChange={e => setOptionalData({...optionalData, sleepTime: e.target.value})} />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: 'var(--text-muted)' }}>{t.wakeTime}</label>
+              <input type="time" className="input-field" value={optionalData.wakeTime} onChange={e => setOptionalData({...optionalData, wakeTime: e.target.value})} />
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: Optional Inputs */}
         <section>
           <button 
             type="button" 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { UserPlus, Mail, Lock, Sparkles, Eye, EyeOff } from 'lucide-react';
+import { UserPlus, Mail, Lock, Sparkles, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 
 export default function Register({ onSwitch, t }) {
   const [email, setEmail] = useState('');
@@ -11,11 +11,27 @@ export default function Register({ onSwitch, t }) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
 
+  const getStrength = (pass) => {
+    let score = 0;
+    if (pass.length >= 8) score++;
+    if (/[A-Z]/.test(pass)) score++;
+    if (/[0-9]/.test(pass)) score++;
+    if (/[^A-Za-z0-9]/.test(pass)) score++;
+    return score;
+  };
+
   const validatePassword = (pass) => {
-    if (pass.length < 6) return t.passwordError;
+    if (pass.length < 8) return "Password must be at least 8 characters.";
+    if (!/[A-Z]/.test(pass)) return "Add at least one uppercase letter.";
+    if (!/[0-9]/.test(pass)) return "Add at least one number.";
+    if (!/[^A-Za-z0-9]/.test(pass)) return "Add at least one special character.";
     if (pass.includes(' ')) return t.noSpacesError;
     return null;
   };
+
+  const strength = getStrength(password);
+  const strengthLabels = ["Very Weak", "Weak", "Medium", "Strong"];
+  const strengthColors = ["#FF7675", "#fab1a0", "#fdcb6e", "#55e6c1"];
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -82,6 +98,53 @@ export default function Register({ onSwitch, t }) {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
+
+          {/* Strength Indicator */}
+          {password && (
+            <div style={{ marginTop: '-10px' }}>
+              <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
+                {[1, 2, 3, 4].map((i) => (
+                  <div 
+                    key={i} 
+                    style={{ 
+                      flex: 1, 
+                      height: '4px', 
+                      borderRadius: '2px', 
+                      background: i <= strength ? strengthColors[strength - 1] : 'var(--border-color)',
+                      transition: 'all 0.3s'
+                    }} 
+                  />
+                ))}
+              </div>
+              <p style={{ fontSize: '12px', fontWeight: '600', color: strengthColors[strength - 1] }}>
+                Password is {strengthLabels[strength - 1]}
+              </p>
+            </div>
+          )}
+
+          {/* Password Requirements Checklist */}
+          <div style={{ background: 'rgba(162, 155, 254, 0.08)', padding: '16px', borderRadius: '16px', fontSize: '13px' }}>
+            <p style={{ fontWeight: '700', marginBottom: '10px', color: 'var(--text-main)', fontSize: '14px' }}>Password Requirements:</p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: password.length >= 8 ? 'var(--success)' : 'var(--text-muted)' }}>
+                {password.length >= 8 ? <CheckCircle2 size={14} /> : <div style={{ width: 14, height: 14, borderRadius: '50%', border: '1px solid var(--border-color)' }} />}
+                8+ Characters
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: /[A-Z]/.test(password) ? 'var(--success)' : 'var(--text-muted)' }}>
+                {/[A-Z]/.test(password) ? <CheckCircle2 size={14} /> : <div style={{ width: 14, height: 14, borderRadius: '50%', border: '1px solid var(--border-color)' }} />}
+                Uppercase
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: /[0-9]/.test(password) ? 'var(--success)' : 'var(--text-muted)' }}>
+                {/[0-9]/.test(password) ? <CheckCircle2 size={14} /> : <div style={{ width: 14, height: 14, borderRadius: '50%', border: '1px solid var(--border-color)' }} />}
+                Number
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: /[^A-Za-z0-9]/.test(password) ? 'var(--success)' : 'var(--text-muted)' }}>
+                {/[^A-Za-z0-9]/.test(password) ? <CheckCircle2 size={14} /> : <div style={{ width: 14, height: 14, borderRadius: '50%', border: '1px solid var(--border-color)' }} />}
+                Special Char
+              </div>
+            </div>
+          </div>
+
           <div style={{ position: 'relative' }}>
             <Lock size={18} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
             <input 

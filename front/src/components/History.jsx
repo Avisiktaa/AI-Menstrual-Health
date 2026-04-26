@@ -9,8 +9,13 @@ export default function History({ onViewResult, t }) {
 
   useEffect(() => {
     const fetchHistory = async () => {
-      if (!auth.currentUser) return;
+      if (!auth.currentUser) {
+        console.log("No user found for history fetch");
+        setLoading(false);
+        return;
+      }
       
+      console.log("Fetching history for:", auth.currentUser.email);
       try {
         const q = query(
           collection(db, 'user_results'),
@@ -18,6 +23,7 @@ export default function History({ onViewResult, t }) {
         );
         
         const querySnapshot = await getDocs(q);
+        console.log("Found records:", querySnapshot.size);
         const docs = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -25,8 +31,8 @@ export default function History({ onViewResult, t }) {
         
         // Sort in JS to avoid index requirement
         docs.sort((a, b) => {
-          const t1 = a.timestamp?.toMillis() || 0;
-          const t2 = b.timestamp?.toMillis() || 0;
+          const t1 = a.timestamp?.toMillis ? a.timestamp.toMillis() : (a.localTimestamp || 0);
+          const t2 = b.timestamp?.toMillis ? b.timestamp.toMillis() : (b.localTimestamp || 0);
           return t2 - t1;
         });
         
@@ -139,6 +145,23 @@ export default function History({ onViewResult, t }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontWeight: '700', fontSize: '18px', color: 'var(--text-main)' }}>
                     Risk: {getRiskLabel(item.prediction?.risk)}
+                  </span>
+                  <div style={{ height: '4px', width: '4px', borderRadius: '50%', background: '#DFE6E9' }}></div>
+                  <span style={{ color: 'var(--primary)', fontWeight: '600' }}>
+                    {(() => {
+                      if (!item.lastPeriodDate) return '';
+                      const lastDate = new Date(item.lastPeriodDate);
+                      const today = new Date();
+                      const diffTime = Math.abs(today - lastDate);
+                      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                      const cycleAvg = item.prediction?.predictedCycle || 28;
+                      const currentDay = diffDays % cycleAvg;
+
+                      if (currentDay <= 5) return t.menstrual;
+                      if (currentDay <= 13) return t.follicular;
+                      if (currentDay <= 15) return t.ovulation;
+                      return t.luteal;
+                    })()}
                   </span>
                   <div style={{ height: '4px', width: '4px', borderRadius: '50%', background: '#DFE6E9' }}></div>
                   <span style={{ color: 'var(--text-muted)', fontSize: '15px' }}>

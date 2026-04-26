@@ -5,6 +5,8 @@ export const translations = {
     tagline: "Your AI-powered menstrual health & PCOD risk companion",
     description: "Track your cycle history, understand your symptoms, and get personalized insights into your hormonal health instantly.",
     startAnalysis: "Start Analysis",
+    dashboard: "Dashboard",
+    analyzeCycle: "Analyze Cycle",
     
     // Input Form
     cycleDetails: "Cycle Details",
@@ -68,6 +70,16 @@ export const translations = {
     resetEmailSent: "Password reset email sent! Check your inbox.",
     passwordError: "Password must be at least 6 characters.",
     noSpacesError: "Password cannot contain spaces.",
+    sleepTime: "Usual Sleep Time",
+    wakeTime: "Usual Wake Time",
+    currentPhase: "Current Phase",
+    healthScore: "Health Score",
+    cycleStability: "Cycle Stability",
+    menstrual: "Menstrual",
+    follicular: "Follicular",
+    ovulation: "Ovulation",
+    luteal: "Luteal",
+    sleepInsight: "Your sleep schedule may be affecting hormonal balance.",
 
     // Results & History
     riskLow: "Low",
@@ -76,7 +88,17 @@ export const translations = {
     historyTitle: "Your Health History",
     noHistory: "No history found yet.",
     viewDetails: "View Details",
-    date: "Date"
+    date: "Date",
+    cycleShort: "C",
+    stabilityHeader: "Cycle Stability",
+    phaseRecs: "Phase Recommendations",
+    recDiet: "DIET",
+    recHydration: "HYDRATION",
+    recExercise: "EXERCISE",
+    recYoga: "Recommended Yoga",
+    recPhaseNotSet: "Phase: Not Set",
+    recPhasePrompt: "Enter last period date in form to see phase",
+    lifestyleTitle: "Lifestyle & Sleep"
   },
   hi: {
     langCode: 'hi',
@@ -84,6 +106,8 @@ export const translations = {
     tagline: "आपका एआई-संचालित मासिक धर्म स्वास्थ्य और पीसीओडी जोखिम साथी",
     description: "अपने चक्र के इतिहास को ट्रैक करें, लक्षणों को समझें, और तुरंत अपने हार्मोनल स्वास्थ्य की व्यक्तिगत जानकारी प्राप्त करें।",
     startAnalysis: "विश्लेषण शुरू करें",
+    dashboard: "डैशबोर्ड",
+    analyzeCycle: "चक्र का विश्लेषण",
     
     // Input Form
     cycleDetails: "चक्र का विवरण",
@@ -147,6 +171,16 @@ export const translations = {
     resetEmailSent: "पासवर्ड रीसेट ईमेल भेज दिया गया है! अपना इनबॉक्स चेक करें।",
     passwordError: "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
     noSpacesError: "पासवर्ड में खाली जगह नहीं हो सकती।",
+    sleepTime: "सोने का समय",
+    wakeTime: "जागने का समय",
+    currentPhase: "वर्तमान चरण",
+    healthScore: "स्वास्थ्य स्कोर",
+    cycleStability: "चक्र स्थिरता",
+    menstrual: "मासिक धर्म",
+    follicular: "कूपिक",
+    ovulation: "ओव्यूलेशन",
+    luteal: "ल्यूटियल",
+    sleepInsight: "आपका सोने का समय हार्मोनल संतुलन को प्रभावित कर सकता है।",
 
     // Results & History
     riskLow: "कम",
@@ -155,7 +189,17 @@ export const translations = {
     historyTitle: "आपका स्वास्थ्य इतिहास",
     noHistory: "अभी तक कोई इतिहास नहीं मिला।",
     viewDetails: "विवरण देखें",
-    date: "तारीख"
+    date: "तारीख",
+    cycleShort: "चक्र",
+    stabilityHeader: "चक्र स्थिरता",
+    phaseRecs: "चरण की सिफारिशें",
+    recDiet: "आहार",
+    recHydration: "हाइड्रेशन",
+    recExercise: "व्यायाम",
+    recYoga: "अनुशंसित योग",
+    recPhaseNotSet: "चरण: सेट नहीं",
+    recPhasePrompt: "चरण देखने के लिए फॉर्म में अंतिम अवधि की तारीख दर्ज करें",
+    lifestyleTitle: "जीवनशैली और नींद"
   },
   bn: {
     langCode: 'bn',
@@ -163,6 +207,8 @@ export const translations = {
     tagline: "আপনার এআই-চালিত মাসিক স্বাস্থ্য এবং পিসিওডি ঝুঁকির সঙ্গী",
     description: "আপনার চক্রের ইতিহাস ট্র্যাক করুন, লক্ষণগুলি বুঝুন এবং আপনার হরমোন স্বাস্থ্য সম্পর্কে ব্যক্তিগত অন্তর্দৃষ্টি পান।",
     startAnalysis: "বিশ্লেষণ শুরু করুন",
+    dashboard: "ড্যাশবোর্ড",
+    analyzeCycle: "চক্র বিশ্লেষণ",
     
     // Input Form
     cycleDetails: "চক্রের বিবরণ",
@@ -226,6 +272,16 @@ export const translations = {
     resetEmailSent: "পাসওয়ার্ড রিসেট ইমেল পাঠানো হয়েছে! আপনার ইনবক্স চেক করুন।",
     passwordError: "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",
     noSpacesError: "পাসওয়ার্ডে কোনো ফাঁকা জায়গা থাকা যাবে না।",
+    sleepTime: "ঘুমানোর সময়",
+    wakeTime: "ঘুম থেকে ওঠার সময়",
+    currentPhase: "বর্তমান পর্যায়",
+    healthScore: "স্বাস্থ্য স্কোর",
+    cycleStability: "চক্রের স্থায়িত্ব",
+    menstrual: "মাসিক",
+    follicular: "ফলিকুলার",
+    ovulation: "ওভুলেশন",
+    luteal: "লুটিউয়াল",
+    sleepInsight: "আপনার ঘুমের সময়সূচী হরমোনের ভারসাম্যকে প্রভাবিত করতে পারে।",
 
     // Results & History
     riskLow: "কম",
@@ -234,6 +290,16 @@ export const translations = {
     historyTitle: "আপনার স্বাস্থ্য ইতিহাস",
     noHistory: "এখনও কোনও ইতিহাস পাওয়া যায়নি।",
     viewDetails: "বিস্তারিত দেখুন",
-    date: "তারিখ"
-  }
+    date: "তারিখ",
+    cycleShort: "চক্র",
+    stabilityHeader: "চক্রের স্থায়িত্ব",
+    phaseRecs: "পর্যায়ের সুপারিশ",
+    recDiet: "খাদ্য তালিকা",
+    recHydration: "জলপান",
+    recExercise: "ব্যায়াম",
+    recYoga: "সুপারিশকৃত যোগব্যায়াম",
+    recPhaseNotSet: "পর্যায়: সেট করা নেই",
+    recPhasePrompt: "পর্যায় দেখতে ফর্মে শেষ পিরিয়ডের তারিখ লিখুন",
+    lifestyleTitle: "জীবনধারা ও ঘুম"
+  },
 };

@@ -85,26 +85,23 @@ router.post("/", async (req, res) => {
     // 7. GET GEMINI ADVICE
     let advice = null;
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       
+      const languageMap = { 'hi': 'Hindi', 'bn': 'Bengali', 'en': 'English' };
+      const targetLang = languageMap[lang] || 'English';
+
       const prompt = `
 You are a menstrual health assistant.
-
-Rules:
-- No diagnosis
-- No medicines
-- Only general advice
-- Keep it short (3-4 sentences)
-- Be supportive and helpful
-
-User Data:
+Provide brief, actionable advice for a person with the following data:
 Cycles: ${cycles.join(", ")} days
 Symptoms: ${symptoms.join(", ") || "none"}
 PCOD Risk: ${mlResult.risk}
-Confidence: ${mlResult.confidence}%
 
-Provide brief, actionable advice.
-Respond strictly in ${lang === 'hi' ? 'Hindi' : lang === 'bn' ? 'Bengali' : 'English'}.
+Rules:
+- No diagnosis, No medicines.
+- Support the user.
+- Keep it under 50 words.
+- IMPORTANT: You MUST respond strictly in ${targetLang}. Use the appropriate script (Devanagari for Hindi, Bengali script for Bengali).
 `;
       
       const result = await model.generateContent(prompt);
