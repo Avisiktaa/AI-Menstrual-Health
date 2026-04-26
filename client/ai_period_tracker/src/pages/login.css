@@ -1,10 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400&display=swap');
+
 .auth-heading {
   text-align: center;
-  font-size: 30px;
+  font-size: 2rem;
+  font-family: cursive;
+  font-weight: 700;
+  letter-spacing: 2px;
   color: rgb(61, 3, 30);
   margin-bottom: 20px;
   padding-top: 80px;
   position: relative;
+}
+
+.lang-selector {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.lang-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #2b1d1f;
+  background: white;
+  color: #2b1d1f;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  background: #2b1d1f;
+  color: white;
 }
 
 @keyframes fadeInUp {
@@ -27,25 +58,29 @@
 .auth-container {
   max-width: 400px;
   margin: 20px auto;
-  padding: 24px;
+  padding: 28px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.85);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
 }
 
 .auth-container h2 {
   margin-bottom: 16px;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .auth-field {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .auth-field input {
   width: 100%;
-  padding: 8px;
-  font-family: 'Playfair Display', serif;
+  padding: 10px;
+  font-family: cursive;
+  font-size: 1.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -53,20 +88,24 @@
 
 .auth-btn {
   width: 100%;
-  padding: 10px;
-  font-family: 'Playfair Display', serif;
+  padding: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
   background: #2b1d1f;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 
 .auth-error {
   color: red;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .auth-link {
-  margin-top: 12px;
+  margin-top: 14px;
+  font-size: 1rem;
 }
