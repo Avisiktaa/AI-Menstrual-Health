@@ -28,13 +28,19 @@ AI Menstrual Health Tracker helps users log their menstrual cycle data and sympt
 
 ✅ **User Authentication** - Secure login/register with Firebase Auth
 ✅ **Cycle Tracking** - Log multiple cycle lengths and symptoms
+✅ **Calendar Feature** - Mark period start dates on interactive calendar
 ✅ **PCOD Risk Prediction** - ML-powered risk assessment (Low/Medium/High)
 ✅ **Confidence Scores** - Probability distribution for each risk level
-✅ **AI Health Advice** - Personalized recommendations via Google Gemini (health-only queries)
+✅ **Comprehensive Health Advice** - Personalized recommendations including:
+   - Food/nutrition advice based on menstrual phase
+   - Sleep cycle recommendations
+   - Yoga poses and exercises for each phase
+✅ **PDF Report Generation** - Download detailed health reports
+✅ **AI Health Chatbot** - Google Gemini powered assistant (health-only queries)
 ✅ **Multilingual Support** - English, Hindi, and Bengali language options
 ✅ **Dark Mode Support** - Automatic theme detection with proper text visibility
 ✅ **Responsive Design** - Works seamlessly on all devices
-✅ **Health-Only Chatbot** - AI assistant restricted to menstrual/reproductive health topics
+✅ **Sidebar Navigation** - Easy access to calendar, reports, and analysis
 
 ---
 
@@ -45,7 +51,7 @@ AI Menstrual Health Tracker helps users log their menstrual cycle data and sympt
 | Frontend | React.js, Vite, React Router, Firebase Auth |
 | Backend | Node.js, Express.js |
 | ML Service | Python, scikit-learn, Random Forest, SMOTE |
-| AI Service | Google Gemini 1.5 Flash |
+| AI Service | Google Gemini 2.5 Flash |
 | Database | Firebase Firestore |
 | Styling | CSS, Playfair Display (Google Fonts) |
 
@@ -61,11 +67,14 @@ AI-Menstrual-Health/
 │   │   ├── assets/
 │   │   │   └── background.jpg
 │   │   ├── components/
+│   │   │   ├── calendar.jsx        # Period tracking calendar
 │   │   │   ├── chart.jsx           # Cycle chart visualization
 │   │   │   ├── cycleform.jsx       # Form to input cycle data
 │   │   │   ├── cycleform.css       # Form styling with dark mode
 │   │   │   ├── dashboard.jsx       # Dashboard UI
 │   │   │   ├── dashboard.css       # Dashboard styling with dark mode
+│   │   │   ├── sidebar.jsx         # Navigation sidebar
+│   │   │   ├── reportGenerator.jsx # PDF report generation
 │   │   │   └── result.jsx          # Prediction result card
 │   │   ├── context/
 │   │   │   └── LanguageContext.js  # Language context for i18n
@@ -92,7 +101,8 @@ AI-Menstrual-Health/
 ├── server/                             # Backend (Node.js/Express)
 │   ├── routes/
 │   │   ├── predict.js                  # ML prediction endpoint
-│   │   └── advice.js                   # Gemini AI advice endpoint (health-only)
+│   │   ├── advice.js                   # Gemini AI advice endpoint (health-only)
+│   │   └── report.js                   # PDF report generation endpoint
 │   ├── .env                            # Gemini API key (not pushed)
 │   ├── index.js                        # Express server
 │   └── package.json
@@ -223,7 +233,7 @@ Predict PCOD risk based on cycle data.
 
 ### POST `/advice`
 
-Get personalized health advice from Gemini AI. **Note:** The chatbot only responds to menstrual/reproductive health queries. Non-health questions will be politely declined.
+Get personalized health advice from Gemini AI including food recommendations, sleep cycle advice, and yoga poses based on menstrual phase. **Note:** The chatbot only responds to menstrual/reproductive health queries. Non-health questions will be politely declined.
 
 **Request Body:**
 ```json
@@ -233,14 +243,15 @@ Get personalized health advice from Gemini AI. **Note:** The chatbot only respon
   "risk": "Low",
   "confidence": 100.0,
   "message": "What should I do about irregular periods?",
-  "lang": "en"
+  "lang": "en",
+  "phase": "menstrual"
 }
 ```
 
 **Response:**
 ```json
 {
-  "advice": "Your cycles are fairly regular with a low PCOD risk. The pain and heavy flow you're experiencing are common. Consider tracking your symptoms, staying hydrated, and maintaining a balanced diet. If symptoms worsen, consult a healthcare professional."
+  "advice": "Your cycles are fairly regular with a low PCOD risk. During the menstrual phase, focus on iron-rich foods like spinach and lentils. Aim for 7-8 hours of sleep and try gentle yoga poses like Child's Pose and Reclining Bound Angle. If symptoms worsen, consult a healthcare professional."
 }
 ```
 
@@ -250,6 +261,21 @@ Get personalized health advice from Gemini AI. **Note:** The chatbot only respon
   "advice": "I'm a menstrual health assistant and can only provide advice related to menstrual health, PCOD/PCOS, and reproductive wellness. Please ask health-related questions."
 }
 ```
+
+### GET `/report`
+
+Generate and download PDF report with cycle analysis, predictions, and personalized recommendations.
+
+**Query Parameters:**
+- `userId`: User ID from Firebase Auth
+
+**Response:**
+PDF file download with:
+- Cycle history and patterns
+- PCOD risk assessment
+- Food recommendations by phase
+- Sleep and yoga advice
+- Symptom tracking summary
 
 ---
 
@@ -307,6 +333,30 @@ Get personalized health advice from Gemini AI. **Note:** The chatbot only respon
 - Real-time PCOD risk prediction with confidence scores
 - Seamless Python-Node.js integration via child process
 
+### 📅 Calendar & Tracking
+- Interactive calendar for marking period start dates
+- Visual cycle pattern tracking
+- Historical data visualization
+- Period prediction based on past cycles
+
+### 📊 PDF Report Generation
+- Comprehensive health reports with:
+  - Cycle history and analysis
+  - PCOD risk assessment
+  - Phase-specific recommendations
+  - Food, sleep, and yoga advice
+- Downloadable PDF format
+- Personalized insights
+
+### 🥗 Phase-Based Recommendations
+- **Food Advice**: Nutrition recommendations based on menstrual phase
+  - Menstrual phase: Iron-rich foods
+  - Follicular phase: Protein and healthy fats
+  - Ovulation phase: Fiber-rich foods
+  - Luteal phase: Complex carbs and magnesium
+- **Sleep Cycle**: Optimal sleep patterns for each phase
+- **Yoga Poses**: Phase-appropriate exercises and stretches
+
 ### 🎨 Dark Mode Support
 - Automatic theme detection using `prefers-color-scheme`
 - Fixed white text on white background issue in input fields
@@ -325,11 +375,12 @@ Get personalized health advice from Gemini AI. **Note:** The chatbot only respon
 - Multi-language support for health advice
 
 ### 🔧 Technical Improvements
-- Separated `/predict` and `/advice` API endpoints
+- Separated `/predict`, `/advice`, and `/report` API endpoints
 - Fixed model.pkl path resolution for cross-directory execution
 - Added comprehensive error handling
 - JSON-based communication between services
 - Suppressed sklearn version warnings in production
+- Sidebar navigation for easy access to features
 
 ---
 
@@ -359,9 +410,9 @@ Get personalized health advice from Gemini AI. **Note:** The chatbot only respon
 
 ## Team
 
-- **Full Stack Development** — Avisiktaa
-- **ML Model & Integration** — Avisiktaa
-- **AI Integration (Gemini)** — Avisiktaa
+- **Full Stack Development** — Avisiktaa 
+- **ML Model & Integration** — Avirupaa
+- **AI Integration (Gemini)** — Avirupaa
 
 ---
 
