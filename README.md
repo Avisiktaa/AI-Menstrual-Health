@@ -302,8 +302,8 @@ Get personalized health advice from Gemini AI.
 ## Team
 
 - **Full Stack Development** — Avisiktaa
-- **ML Model & Integration** — Avisiktaa
-- **AI Integration (Gemini)** — Avisiktaa
+- **ML Model & Integration** — Avirupaaa
+- **AI Integration (Gemini)** — Avirupaa
 
 ---
 
