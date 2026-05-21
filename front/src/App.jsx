@@ -117,7 +117,7 @@ function App() {
 
     // 2. CALL AI BACKEND
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
 
     try {
       const res = await fetch('/api/predict', {
@@ -136,6 +136,7 @@ function App() {
       if (!res.ok) throw new Error(`Server responded with ${res.status}`);
       
       const result = await res.json();
+      console.log("Frontend received:", result);
       setAiData(result);
       
       // 3. UPDATE HISTORY WITH PREDICTION

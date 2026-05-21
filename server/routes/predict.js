@@ -51,6 +51,7 @@ function runML(longCycle, irregularScore, variation, lengthOfCycle) {
 router.post("/", async (req, res) => {
   try {
     const { cycles, symptoms = [], lang = 'en' } = req.body;
+    console.log("Received request:", { cycles, symptoms, lang });
 
     // 1. AVG
     const avg = cycles.reduce((sum, val) => sum + val, 0) / cycles.length;
@@ -75,6 +76,8 @@ router.post("/", async (req, res) => {
     // 6. IRREGULAR SCORE
     const irregularScore = variation + mensesScore;
 
+    console.log("Calling ML with:", { longCycle, irregularScore, variation, maxCycle });
+
     // 7. CALL ML
     const mlResult = await runML(
       longCycle,
@@ -83,9 +86,12 @@ router.post("/", async (req, res) => {
       maxCycle
     );
 
+    console.log("ML Result:", mlResult);
+
     // 7. GET GEMINI ADVICE
     let advice = null;
     try {
+      console.log("Calling Gemini API...");
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
       
       const languageMap = { 'hi': 'Hindi', 'bn': 'Bengali', 'en': 'English' };
@@ -107,22 +113,26 @@ Rules:
       
       const result = await model.generateContent(prompt);
       advice = result.response.text();
+      console.log("Gemini advice received:", advice.substring(0, 50) + "...");
     } catch (err) {
       console.error("Gemini error:", err.message);
       advice = "Unable to generate advice at this time.";
     }
 
     // 8. RESPONSE
-    res.json({
+    const responseData = {
       predictedCycle: Math.round(avg),
       irregularScore,
       risk: mlResult.risk,
       confidence: mlResult.confidence,
       advice: advice
-    });
+    };
+    console.log("Sending response:", responseData);
+    res.json(responseData);
 
   } catch (err) {
-    console.error(err);
+    console.error("MAIN ERROR:", err);
+    console.error("Error stack:", err.stack);
     res.status(500).json({ error: "Prediction failed" });
   }
 });
